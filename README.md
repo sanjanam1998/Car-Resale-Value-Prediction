@@ -17,7 +17,7 @@ project_2.html - about us page with multi stage download ajax pattern <br>
 pred.html - page where sellers can register their car or predict the price for it (predictive fetch implemented here)<br>
 comet.html - can view list of available cars for sale (comet implemented) <br>
 Ann.py - training the ANN model to predict the resale value of the car <br>
-project.py - load the trained model for testing and prediction <br>
+subs.py - load the trained model for testing and prediction <br>
 
 ### Folders- 
 Cleaning - Cleaning of data obtained from kaggle <br>
