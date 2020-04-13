@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="formSub">
+    <head>
+        <title>Subscribe Now</title>
+<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style>
+	body, html {
+    height: 100%;
+    margin: 0;
+    background-color: black;
+}
+	.bg {
+    
+    background-image: url("img/car.jpg");
+
+    
+    height: 110%; 
+    width: 100%;
+    filter: blur(0.5px);    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   /* margin: 1;*/
+}
+
+.container {
+  
+  background-color: rgba(50,50,50, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  padding: 20px;
+  text-align: left;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+input[type=text],input[type=number],input[type=email],textarea{
+margin:5px 10px 22px 0px;
+padding: 5px 0px 10px 12px ;
+width: 100%;
+border:none;
+font-size:15px;
+background: #f1f1f1;
+	
+}
+input[type=Date],textarea{
+border:none;
+font-size:15px;
+background: #f1f1f1;
+	}
+</style>
+        <script src="http://localhost/form_submit/slider1/js/angular.js" ></script>
+        <script src="http://localhost/form_submit/slider1/js/formjs2.js"></script>
+    </head> 
+ <header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">Cars4You</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.html#intro">Home</a></li>
+          <li><a href="pred.html">Predict</a></li>
+          <li><a href="comet.html">Buy</a></li>
+          <li><a href="sub.html">Subscribe</a></li>
+          <li><a href="project_2.html">About Us</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#footer">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+</header>
+    <body>
+    	<br>
+  	<div class="bg">
+      <div ng-controller="formCtrl">
+          <form  name="userForm"  class="container" style="float:center" style="margin:3">
+             <h2>Subscribe Now!!</h2>
+              <fieldset>
+	
+          		<label><b>First-Name: </b><input type="text" ng-model="fname" placeholder="Enter Firstname"></label><br>
+          		<label><b>Last-Name: </b><input type="text" ng-model="lname" placeholder="Enter Lastname"></label><br>
+          		<label><b>Email: </b><input type="email" ng-model="email" placeholder="Enter Email"></label><br>
+          		<label><b>Phone: </b><input type="text" ng-model="number" placeholder="Enter Phone number"></label><br>
+	            </fieldset><br>
+              <button type="submit" class="btn" style="font-size:18px" style="color: black" ng-click="formsubmit(userForm.$valid)"  ng-disabled="userForm.$invalid">Subscribe </button>
+              		
+            </form>
+        </div>
+        
+    </body>
+
+</html>

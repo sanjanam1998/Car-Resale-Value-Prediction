@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link href="img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <!--<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">-->
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+    <script src="https://code.angularjs.org/1.3.5/angular.js"></script>
+    <script src="https://code.angularjs.org/1.3.5/angular-touch.js"></script>
+    <script>
+    var app=angular.module('myApp',['ngTouch']);
+    app.directive('ngCarousel', function() {
+      return function(scope, element, attrs) {
+        var el = element[0];
+        var containerEl = el.querySelector("ul");
+        var slidesEl = containerEl.querySelectorAll("li");
+        scope.numSlides = slidesEl.length;
+        scope.curSlide = 1;   
+        scope.$watch('curSlide', function(num) {
+          num = (num % scope.numSlides) + 1;
+          containerEl.style.left = (-1*100*(num-1)) + '%';
+        });
+        
+        el.style.position = 'relative';
+        el.style.overflow = 'hidden';
+
+        containerEl.style.position = 'absolute';
+        containerEl.style.width = (scope.numSlides*100)+'%';
+        containerEl.style.listStyleType = 'none';
+        containerEl.style.margin =10;
+        containerEl.style.padding=0;
+        containerEl.style.transition = '1s';
+        
+        for(var i=0; i<slidesEl.length; i++) {
+          var slideEl = slidesEl[i];
+          slideEl.style.display = 'inline-block';
+          slideEl.style.width = (100/scope.numSlides) + '%';
+        }
+      };
+    });
+    </script>
+    <style>
+
+    </style>
+  </head>
+
+  <!--==========================
+    Header
+  ============================-->
+ <header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">Cars4You</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li><a href="pred.html">Predict</a></li>
+          <li><a href="comet.html">Buy</a></li>
+          <li><a href="sub.html">Subscribe</a></li>
+          <li><a href="project_2.html">About Us</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+</header>
+
+<body ng-app="myApp">
+    
+    
+	  <!--==========================
+	    Intro Section
+	  ============================-->
+    <section id="carousel" ng-carousel
+      ng-swipe-right="curSlide=curSlide-1" 
+      ng-swipe-left="curSlide=curSlide+1">
+
+      <ul>
+        <li><img src="img/car1.jpeg" /></li>
+        <li><img src="img/car2.jpeg" /></li>
+        <li><img src="img/car3.jpeg" /></li>
+        <li><img src="img/car4.jpeg" /></li>
+        <li><img src="img/car5.jpeg" /></li>
+        <li><img src="img/car3.jpeg" /></li>
+      </ul>
+      
+      <div id="prev-button" ng-click="curSlide=curSlide-1"> &lt; </div>
+      
+      <div id="next-button" ng-click="curSlide=curSlide+1">&gt; </div>
+    </section>
+
+
+<section id="team">
+      <div class="container">
+        <div class="section-header wow fadeInUp">
+          <h3>Team</h3>
+          <p>The masterminds who founded us are keeping us up and on the run 24x7</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp">
+            <div class="member">
+              <img src="img/t2.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Mr. W</h4>
+                  <span>Founder</span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="member">
+              <img src="img/t3.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Ms. X</h4>
+                  <span>Chief Executive Officer</span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="member">
+              <img src="img/t1.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Ms. Y</h4>
+                  <span>CTO</span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="img/t4.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Mr. K</h4>
+                  <span>Inventory Manager</span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+<footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">	
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#home">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#about">About us</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="./subscribe.html">Subscribe</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              A108, Sesame Street <br>
+              Boulevard Avenue, BLR 535022<br>
+              India <br>
+              <strong>Phone:</strong> +91 7934078667<br>
+              <strong>Email:</strong> cars4you@gmail.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Cars4You</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+    </div>
+  </footer><!-- #footer -->
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!--<script src="lib/easing/easing.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>-->
+  <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+  </body>
+</html>

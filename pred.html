@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="formPred">
+    <head>
+        <title>Resale Value Prediction</title>
+<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style>
+		
+	.bg {
+    
+    background-image: url("img/car.jpg");
+ 
+    height: 110%; 
+    width: 100%;
+    filter: blur(0.5px);    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   /* margin: 1;*/
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: black;
+}
+.container {
+  
+  background-color: rgba(50,50,50, 0.4); /* Black w/opacity/see-through */
+  color:white;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  padding: 20px;
+  text-align: left;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+input[type=text],input[type=number],input[type=email],textarea,select{
+margin:5px 10px 22px 0px;
+padding: 5px 0px 10px 12px ;
+width: 100%;
+border:none;
+font-size:15px;
+background: #f1f1f1;
+	
+}
+input[type=Date],textarea{
+border:none;
+font-size:15px;
+background: #f1f1f1;
+	}
+
+#searchResult,#searchResult1{
+  list-style: none;
+  padding: 0px;
+  width: 250px;
+  position: absolute;
+  margin: 0;
+}
+
+#searchResult li,#searchResult1 li{
+  background: lavender;
+  color:black;
+  padding: 12px;
+  margin-bottom: 0.5px;
+}
+
+#searchResult li:nth-child(even),#searchResult1 li:nth-child(even){
+  background: cadetblue;
+  color: white;
+}
+
+#searchResult li:hover, #searchResult1 li:hover{
+  cursor: pointer;
+}
+
+</style>
+        <script src="http://localhost/form_submit/slider1/js/angular.js" ></script>
+        <script src="http://localhost/form_submit/slider1/js/pred.js"></script>
+    </head> 
+<header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">Cars4You</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.html#intro">Home</a></li>
+          <li><a href="pred.html">Predict</a></li>
+          <li><a href="comet.html">Buy</a></li>
+          <li><a href="sub.html">Subscribe</a></li>
+          <li><a href="project_2.html">About Us</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#footer">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+</header>
+    <body>
+    <br><br><br><br><br><br><br>
+		<title >Resale Value Prediction</title>
+    	<div class="bg" ng-controller="formCtrl">
+            <form  name="userForm"  class="container" ng-click='containerClicked();' style="float:center">
+               <h1>Find out the rates</h1>
+               <fieldset>
+                <label><b>Brand: </b>
+                <input type="text" ng-keyup='fetchUsers()' ng-click='searchboxClicked($event);' ng-model="searchText" placeholder='Enter brand name'><br>
+                <ul id='searchResult' >
+      				<li ng-click='setValue($index,$event)' ng-repeat="result in searchResult" > 
+      					{{ result.brand }}
+      				</li>
+    			</ul>
+
+    			 <label><b>Model: </b>
+                <input type="text" ng-keyup='fetchUsers1()' ng-click='searchboxClicked($event);' ng-model="searchText1" placeholder='Enter model name'><br>
+                <ul id='searchResult1' >
+      				<li ng-click='setValue1($index,$event)' ng-repeat="result in searchResult1" > 
+      					{{ result.model }}
+      				</li>
+    			</ul>
+
+    			<label><b>Fuel Type: </b>
+                <select ng-model="selectedFuel" ng-options="x for x in fuel">
+				</select><br>
+				<label><b>Vehicle Type: </b>
+                <select ng-model="selectedVehicle" ng-options="x for x in vehicle">
+				</select><br>
+				<label><b>Kilometers Run: </b><input type="number" ng-model="km" placeholder="Enter the kilometers">
+   				 <label><b style="text-align:right">Power: </b><input type="number" ng-model="pow" placeholder="Enter the power"><br>
+    			<label><b>Unrepaired Damage: </b><input type="radio" ng-model="damage" value="ja">Yes
+  				<input type="radio" ng-model="damage" value="nein">No</label><br><br>
+     			<label><b>Gearbox: </b><input type="radio" ng-model="gear" value="automatik">Automatic
+    			<input type="radio" ng-model="gear" value="manuell">Manual</label><br><br>
+    			<label><b>Registration Date: </b><input type="Date" ng-model="RegDate"></label><br><br>
+    		</fieldset>
+    		<pre ng-model="result" style="font-size:20px;color:cyan;">
+                {{result}}
+            	</pre>
+                <button type="submit" class="btn" style="font-size:16px" style="color: black" ng-click="formsubmit(userForm.$valid)"  ng-disabled="userForm.$invalid">Predict </button>
+                <button type="submit" class="btn" style="font-size:16px" style="color: black" ng-click="register(userForm.$valid)"  ng-disabled="userForm.$invalid">Register </button><br>
+                
+            </form>
+
+        </div>
+        
+    </body>
+
+</html>
+ 

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+	body{
+  background-color:black;
+  font-size:17px;
+  color: white;
+  font-family: Verdana, sans-serif;
+
+}
+h1{
+  font-size:50px;
+  color: blue;
+  border: 2px;
+  border-bottom-style: solid;
+  border-color: white;
+}
+* {
+  box-sizing: border-box;
+  border-color: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  color: black;
+  clear: both;
+}
+</style>
+</head>
+<header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">Cars4You</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.html#intro">Home</a></li>
+          <li><a href="pred.html">Predict</a></li>
+          <li><a href="comet.html">Buy</a></li>
+          <li><a href="sub.html">Subscribe</a></li>
+          <li><a href="project_2.html">About Us</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#footer">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+</header>
+<title>Multi Stage Download</title>
+<script>
+var xhr=new XMLHttpRequest();
+        var image = [];
+        var paras = [];
+        var i = image.length;
+        function load_data()
+        {
+            xhr.open("GET", "descriptions.php", true);
+            xhr.onreadystatechange = get_data;
+            xhr.send();
+        }
+        function get_data()
+        {
+            if(this.readyState==4 && this.status==200)
+            {
+                var description = document.getElementById("description");
+                description.innerHTML+=this.response;
+                setTimeout(load_image_data, 500);
+            }
+        }
+        function load_image_data()
+        {
+        	xhr.open("GET", "image.txt", true);
+            xhr.onreadystatechange = get_image_data;            
+            xhr.send();
+        }
+
+		function get_image_data()
+        {
+            if(this.readyState==4 && this.status==200)
+            {
+                
+                var response = this.response;
+                response_array = response.split("\n");
+                for(var j=0; j<response_array.length; ++j)
+                {
+                    var response_image = response_array[j].split(";");
+                    image.push(response_image[1]);
+                    paras.push(response_image[2]);
+                    i+=1;
+                }
+                
+            }
+            var data = "";
+            for(k=0;k<i;k++)
+            {
+            	load_images_with_url(image[k],k);
+            }
+            
+        }
+        var xhr1 = null;
+        function load_images_with_url(url,index)
+     	{
+     		console.log(url);
+     		xhr1 = new XMLHttpRequest();
+     		xhr1.open("GET", "image_creator.php?image_name="+url, true);     		
+     		xhr1.onreadystatechange = fetch_images_with_url;
+     		image_des = document.createElement("p");
+     		image_des.innerHTML= paras[k]+"<br>"+"<br>";
+        document.getElementsByClassName("column right")[0].appendChild(image_des);
+     		xhr1.responseType = "blob";
+     		xhr1.send(null);
+     	}
+     	function fetch_images_with_url()
+     	{
+     	console.log(this.readyState + "  " +this.status)
+     		if(this.readyState == 4 && this.status == 200)
+                {
+                
+                		var img = document.createElement("img");
+                		img.src = URL.createObjectURL(this.response);
+                    img.width=285;
+                		img.border= 4;
+                		document.getElementsByClassName("column left")[0].appendChild(img);
+                }
+     	}
+
+      
+</script>
+
+<body onload="load_data();">
+
+    <div id="description">	
+    </div>
+  <div class="row">
+  <div class="column left" >
+  </div>
+  <div class="column right">
+  </div>
+  </div>
+
+</body>
+</html>
