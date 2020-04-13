@@ -14,6 +14,7 @@ from sklearn.preprocessing import OneHotEncoder
 from keras.models import load_model
 from flask import Flask,request
 from flask_mysqldb import MySQL
+import json
 from flask_cors import CORS, cross_origin
 import tensorflow as tf
 global graph
@@ -96,7 +97,7 @@ app.config['MYSQL_DB'] = 'webtech'
 
 mysql = MySQL(app)
 
-@app.route("/",methods=["PUT","POST","DELETE"])
+@app.route("/",methods=["PUT","POST"])
 def adduser():
     if(request.method=="POST"):
         model1=request.json["model"]
@@ -134,14 +135,5 @@ def adduser():
         mysql.connection.commit()
         cur.close()
         return 'success'
-    elif(request.method=="DELETE"):
-        print('hi')
-        email=request.json["email"]
-        cur = mysql.connection.cursor()
-        cur.execute("DELETE FROM users WHERE email=%s",email)
-        mysql.connection.commit()
-        cur.close()
-        return 'success'
-        
 if __name__ == '__main__':
     app.run(threaded=False,port=5000)
