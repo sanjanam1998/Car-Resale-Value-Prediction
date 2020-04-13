@@ -1,5 +1,5 @@
 # Car-Resale-Value-Prediction
-Cars4you is a website that helps users predict resale values of their cars. All that needs to be done is to enter details of the car such as Brand, Model, Distance covered and few others. Our well-trained ANN model then comes up with a prediction.<br>
+<b>Cars4you</b> is a website that helps users predict resale values of their cars. All that needs to be done is to enter details of the car such as Brand, Model, Distance covered and few others. Our well-trained ANN model then comes up with a prediction.<br>
 Additionally, users can subscribe to our site for updates on cars up for sale. They will be contacted by our company to help them choose their perfect car.<br>
 
 ### Technologies Used-
