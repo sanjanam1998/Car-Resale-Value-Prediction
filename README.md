@@ -18,7 +18,11 @@ pred.html - page where sellers can register their car or predict the price for i
 comet.html - can view list of available cars for sale (comet implemented) <br>
 
 ### Folders- 
+Cleaning - Cleaning of data obtained from kaggle <br>
 css - main style sheet <br>
 js - form2.js (angularJS file for subscription), pred.js (angularJS file for prediction and registering), angular.js (default angularJS file)<br>
 img - images folder<br>
 lib - all libraries needed for frontend (bootstrap, jQuery, etc.)
+
+### Link to the original Dataset
+https://www.kaggle.com/orgesleka/used-cars-database#autos.csv
