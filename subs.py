@@ -18,6 +18,7 @@ import json
 from flask_cors import CORS, cross_origin
 import tensorflow as tf
 global graph
+import jsonify
 graph = tf.compat.v1.get_default_graph()
 model = load_model('model.h5')
 app = Flask(__name__)
@@ -80,6 +81,9 @@ def prediction(model1,brand,fuel,vehicle,damage,gear,power,km,age):
     X.append(damage)
     X.append(gear)
     #print(mappings['honda'][:-1])
+    print(mappings)
+    if(brand not in mappings.keys() or model1 not in mappings.keys()):
+    	return 0
     X1=np.append(mappings[brand][:-1],mappings[model1][:-1])
     X2 = np.append(mappings[fuel][:-1],mappings[vehicle][:-1])
     X3 = np.append(X1,X2).tolist()
@@ -100,6 +104,7 @@ mysql = MySQL(app)
 @app.route("/",methods=["PUT","POST"])
 def adduser():
     if(request.method=="POST"):
+    	#request.json = {"brand":'audi',"model":'a6',"fuel":'diesel',"vehicle":'bus',"damage":'nein',"gear":"manuell","date":'31-12-1998',"km":'15000',"power":'750'}
         model1=request.json["model"]
         brand=request.json["brand"]
         fuel= request.json["fuel"]
@@ -109,9 +114,14 @@ def adduser():
         power = request.json["power"]
         date = request.json["date"]
         km = request.json["km"]
+        if(power > 1000 or power < 1 or km < 0):
+        	return str(" "), 400
         with graph.as_default():
-            val = str(round(prediction(model1.lower(),brand.lower(),fuel.lower(),vehicle.lower(),damage,gear,power,km,date)))
-        return val
+            val = round(prediction(model1.lower(),brand.lower(),fuel.lower(),vehicle.lower(),damage,gear,power,km,date))
+        if(val):
+        	return str(val)
+        else:
+        	return str(" "), 400
     elif(request.method=="PUT"):
         table=request.json["table"]
         cur = mysql.connection.cursor()
@@ -131,6 +141,8 @@ def adduser():
             power = request.json["power"]
             date = request.json["date"]
             km = request.json["km"]
+            if(power > 1000 or power < 1 or km < 0):
+            	return str(" "), 400
             cur.execute("INSERT INTO cars VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (brand,model,fuel,vehicle,km,power,damage,gear,date))
         mysql.connection.commit()
         cur.close()
